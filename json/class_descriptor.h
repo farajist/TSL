@@ -37,7 +37,7 @@ template <typename T>
 class class_descriptor
 {
   public:
-    typedef primitive_type_descriptor<T> descriptor_t;
+    using descriptor_t = primitive_type_descriptor<T>;
 };
 /** =======================================================
  *  class descriptor marcro stub
@@ -166,7 +166,7 @@ void dispatch_read_object(const class_descriptor<T>& desc,
     if (!reader.is_end_object()) 
     {
         std::string s_prop;
-        reader.first_property(s_prop);
+        reader.first_prop(s_prop);
         for (;;)
         {
             read_object_functor<TReader, T> functor(reader, t, s_prop);
@@ -175,7 +175,7 @@ void dispatch_read_object(const class_descriptor<T>& desc,
                 throw std::runtime_error("couldn't find property");
             if (reader.is_end_object())
                 break;
-            reader.next_property(s_prop);
+            reader.next_prop(s_prop);
         }
     }
     reader.leave_object();

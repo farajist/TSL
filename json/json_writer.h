@@ -3,6 +3,14 @@
 
 #include <string>
 #include <iostream>
+
+/**
+ * an ostream wrapper class, writes given object using the JSON
+ * formalism through a set of sequantial member functions calls
+ * methods are diveded into 2 categories :
+ *  syntax output functions : output syntax-related tokens ("{,[..")
+ *  value output functions : output actual values such as ints, floats ...
+ * */
 template <typename TStream>
 class json_writer
 {

@@ -2,21 +2,42 @@
 #define __MAP_TYPE_DESCRIPTOR__
 
 #include <map>
-// #include <string>
+
+/**
+ * forward declaration for the class_descriptor template
+ * */
+
 template <typename T>
 class class_descriptor;
+
+/**
+ * provides type-specific (map) descriptor necessary 
+ * for disptach operations overloads
+ * */
 
 template <typename T>
 class map_type_descriptor
 {
 };
 
+/**
+ * map-specific class type descriptor, has a 
+ * overrides the descriptor_t member to represent 
+ * the array_type_descriptor type
+ * */
+
 template <typename T>
 class class_descriptor<std::map<std::string, T>>
 {
 	public:
-		typedef map_type_descriptor<std::map<std::string, T>> descriptor_t;
+		using descriptor_t = map_type_descriptor<std::map<std::string, T>>;
 };
+/**
+ * an overload for the 
+ * reading operation of map type using a reader  
+ * read map types for all possible (visitable) kinds of 
+ * classes
+ * */
 
 template <typename TReader, typename T>
 void dispatch_read_object(const
@@ -38,6 +59,14 @@ void dispatch_read_object(const
 	}
 	reader.leave_object();
 }
+
+/**
+ * an overload for the 
+ * writing operation of map type using a writer  
+ * which wraps an ostream object inside, this used to 
+ * write map types for all possible (visitable) kinds of 
+ * classes
+ * */
 
 template <typename TWriter, typename T>
 void dispatch_write_object(const
