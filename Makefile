@@ -1,26 +1,57 @@
-#OBJS : file to compile as part of the project
-OBJS = json/json_writer.cpp json/class_descriptor.cpp json/json.cpp foo.cpp main.cpp
-
 #CC compiler to be used
 CC = g++
-
-#INCLUDE_PATHS : addtional include paths needed
-# INCLUDE_PATHS = `sdl2-config --cflags`
-
-#LIBRARY_PATHS : addtional library paths needed
-# LIBRARY_PATHS = `sdl2-config --libs`
-
 
 #COMPILER_FLAGS
 COMPILER_FLAGS = -Wall --std=c++14
 
-#LINKER_FLAGS : libraries we're linking against
-# LINKER_FLAGS = -lSDL2_image
+#Executable 
+jsonpp : main.o foo.o json.o \
+		class_descriptor.o map_type_descriptor.o array_type_descriptor.o \
+		vector_type_descriptor.o json_writer.o json_reader.o json_lexer.o
+		$(CC) -o jsonpp main.o foo.o json.o \
+				class_descriptor.o map_type_descriptor.o array_type_descriptor.o \
+				vector_type_descriptor.o json_writer.o json_reader.o json_lexer.o
+		rm  main.o foo.o json.o \
+				class_descriptor.o map_type_descriptor.o array_type_descriptor.o \
+				vector_type_descriptor.o json_writer.o json_reader.o json_lexer.o
 
-#OBJ_NAME : executable name
-OBJ_NAME = jsonpp
+#OBJS : file to compile as part of the project
 
-#Target that compiles the executable
+main.o : main.cpp
+	$(CC) $(COMPILER_FLAGS) -c main.cpp 
 
-all : $(OBJS)
-	$(CC) $(OBJS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+foo.o : foo.cpp
+	$(CC) $(COMPILER_FLAGS) -c foo.cpp 
+
+json.o : json/json.cpp json/json_writer.h json/json_reader.h json/class_descriptor.h \
+		json/array_type_descriptor.h json/map_type_descriptor.h json/vector_type_descriptor.h
+	$(CC) $(COMPILER_FLAGS) -c json/json.cpp 
+
+class_descriptor.o : json/class_descriptor.cpp
+	$(CC) $(COMPILER_FLAGS) -c json/class_descriptor.cpp 
+
+map_type_descriptor.o : json/map_type_descriptor.cpp
+	$(CC) $(COMPILER_FLAGS) -c json/map_type_descriptor.cpp 
+
+array_type_descriptor.o : json/array_type_descriptor.cpp
+	$(CC) $(COMPILER_FLAGS) -c json/array_type_descriptor.cpp 
+
+vector_type_descriptor.o : json/vector_type_descriptor.cpp json/array_type_descriptor.h
+	$(CC) $(COMPILER_FLAGS) -c json/vector_type_descriptor.cpp 
+
+json_writer.o : json/json_writer.cpp
+	$(CC) $(COMPILER_FLAGS) -c json/json_writer.cpp 
+
+json_reader.o : json/json_reader.cpp json/json_lexer.h
+	$(CC) $(COMPILER_FLAGS) -c json/json_reader.cpp 
+
+json_lexer.o : json/json_lexer.cpp
+	$(CC) $(COMPILER_FLAGS) -c json/json_lexer.cpp 
+
+
+
+clean :
+	rm jsonpp main.o foo.o json.o \
+				  class_descriptor.o map_type_descriptor.o array_type_descriptor.o \
+				  vector_type_descriptor.o json_writer.o json_reader.o json_lexer.o
+

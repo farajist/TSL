@@ -86,7 +86,6 @@ public:
         m_stream << "\"";   
         for (char c : str)
         {
-            printf("%d\n", c);
             switch(c) 
             {
                 case '\t' :
