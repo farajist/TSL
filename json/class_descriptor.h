@@ -124,9 +124,9 @@ class read_object_functor
     TReader &m_reader;
     TClass &m_t;
     std::string m_sprop;
-
+    bool m_bfound; // this was public !
   public:
-    bool m_bfound;
+    bool not_found(){ return !m_bfound; }
     read_object_functor(TReader &reader, TClass &t, std::string s_prop)
         : m_reader(reader), m_t(t), m_sprop(s_prop)
     {
@@ -171,7 +171,7 @@ void dispatch_read_object(const class_descriptor<T>& desc,
         {
             read_object_functor<TReader, T> functor(reader, t, s_prop);
             desc.foreach_prop(functor);
-            if (!functor.m_bfound)
+            if (functor.not_found())
                 throw std::runtime_error("couldn't find property");
             if (reader.is_end_object())
                 break;

@@ -2,7 +2,7 @@
 CC = g++
 
 #COMPILER_FLAGS
-COMPILER_FLAGS = -Wall --std=c++17
+COMPILER_FLAGS = -Wall -std=c++17
 
 #Executable 
 jsonpp : main.o foo.o json.o \
