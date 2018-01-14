@@ -8,7 +8,8 @@ void read_write_json_string()
     std::string s_json_parse = 
         "{\"a_val\":1,"
         "\"another_val\":2,"
-        "\"third_val\":\"string\"}";
+        "\"third_val\":\"string\","
+        "\"fourth\":\"grear\"}";
     foo result;
     from_json(result, s_json_parse);
     std::cout << "here's result " << std::endl;
@@ -25,7 +26,7 @@ void read_write_json_string()
 }
 int main (int argc, char *argv[]) 
 {
-    // foo b1(1, 2, "a string");
+    // foo b1(1, 2, "a string", "gear");
     // std::cout << to_json(b1) << std::endl;
 
     read_write_json_string();

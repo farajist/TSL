@@ -5,6 +5,9 @@
 #include <stdexcept>
 #include <cstddef>
 
+#include "serializable_macros.h"
+#define SERIALIZE_CLASS_MEMBER_HELPER(X) \
+        callback(#X, &class_t::X);
 
 /** =======================================================
  *  primitive_type_descriptor
@@ -39,6 +42,32 @@ class class_descriptor
   public:
     using descriptor_t = primitive_type_descriptor<T>;
 };
+
+/** =======================================================
+ *  new class descriptor marcro stub
+ *  ===================================================== */
+
+/**
+ * generates class descriptors for each class to make 
+ * it a serializable object, class name + target attributes
+ * must be provided as arguments !
+ * */
+#define SERIALIZABLE(X, ...) \
+    template<> \
+    class class_descriptor<X> \
+    { \
+    public: \
+        typedef X class_t; \
+        typedef class_descriptor<X> descriptor_t; \
+        constexpr const char* get_name() const {return #X; } \
+        template <typename TCallback> \
+        void foreach_prop(TCallback& callback) const { \
+            SERIALIZE_CLASS_PP_MAP(SERIALIZE_CLASS_MEMBER_HELPER, __VA_ARGS__) \
+        }\
+    };
+
+
+
 /** =======================================================
  *  class descriptor marcro stub
  *  ===================================================== */
@@ -48,7 +77,7 @@ class class_descriptor
  * it a serializable object, class name + target attributes
  * must be provided as arguments !
  * */
-#define BEGIN_CLASS_DESCRIPTOR(X) \
+#define BEGIN_SERIALIZE(X) \
     template<> \
     class class_descriptor<X> \
     { \
@@ -58,8 +87,8 @@ class class_descriptor
         constexpr const char* get_name() const {return #X; } \
         template <typename TCallback> \
         void foreach_prop(TCallback& callback) const {
-#define CLASS_DESCRIPTOR_ENTRY(X) callback(#X, &class_t::X);
-#define END_CLASS_DESCRIPTOR() }};
+#define THIS(X) SERIALIZE_CLASS_MEMBER_HELPER(X)
+#define END_SERIALIZE() }};
 
 /** =======================================================
  *  class_descriptor getter
