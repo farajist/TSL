@@ -1,0 +1,11 @@
+digraph "read_object"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node32 [label="read_object",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node32 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 [label="dispatch_read_object",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class__descriptor_8h.html#a17424229e7172bb801f0216864c9a767"];
+  Node32 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node34 [label="get_type_descriptor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class__descriptor_8h.html#a94023ec1f1e10ea3ca358f63ada6ad12"];
+}

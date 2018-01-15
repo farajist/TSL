@@ -1,0 +1,15 @@
+digraph "write_json"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node42 [label="write_json",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node42 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node43 [label="get_json_writer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$json__writer_8h.html#a2efe8efe8b5e488eed205263b976a4ac"];
+  Node42 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node44 [label="write_object",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$json_8h.html#add1608bff3bc50f6f498f20fcef44be1"];
+  Node44 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node45 [label="dispatch_write_object",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class__descriptor_8h.html#a649c17a92bc90b6dfb20d558796c848a"];
+  Node44 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 [label="get_type_descriptor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class__descriptor_8h.html#a94023ec1f1e10ea3ca358f63ada6ad12"];
+}

@@ -1,0 +1,11 @@
+digraph "json_reader::read_prop"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node77 [label="json_reader::read_prop",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node77 -> Node78 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node78 [label="json_reader::first_prop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classjson__reader.html#a6cd810c425641e91a099bf31d0dad431"];
+  Node77 -> Node79 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node79 [label="json_reader::next_prop",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classjson__reader.html#ac00aa0af91dd4a36bff27ae6d20dd875"];
+}
