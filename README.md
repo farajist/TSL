@@ -1,6 +1,6 @@
 # TSL 
 ## What is TSL ?
-T-rex Serialization library is a small C++ serialization library that uses
+TSL or T-rex Serialization library is a small C++ serialization library that uses
 class-based stubs to add reflection functionality to C++ classes, the goal.
 
 ## Goals
